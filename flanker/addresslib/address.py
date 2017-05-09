@@ -357,7 +357,7 @@ def validate_list(addr_list, as_tuple=False, metrics=False):
             ulist.append(unpar)
 
         # update all the metrics
-        for k, v in metrics.iteritems():
+        for k, v in metrics.items():
             metrics[k] += v
 
     if as_tuple:
