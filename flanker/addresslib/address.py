@@ -135,7 +135,7 @@ def parse_discrete_list(address_list, metrics=False):
     parser = mailbox_or_url_list_parser
 
     # normalize inputs to bytestrings
-    if isinstance(address_list, unicode):
+    if isinstance(address_list, str):
         address_list = address_list.encode('utf-8')
 
     # sanity checks
@@ -430,9 +430,9 @@ class EmailAddress(Address):
 
     def __init__(self, raw_display_name=None, raw_addr_spec=None, display_name=None, mailbox=None, hostname=None):
 
-        if isinstance(raw_display_name, unicode):
+        if isinstance(raw_display_name, str):
             raw_display_name = raw_display_name.encode('utf-8')
-        if isinstance(raw_addr_spec, unicode):
+        if isinstance(raw_addr_spec, str):
             raw_addr_spec = raw_addr_spec.encode('utf-8')
 
         if raw_display_name and raw_addr_spec:
@@ -634,7 +634,7 @@ class UrlAddress(Address):
     def __init__(self, raw=None, address=None):
 
         if raw:
-            if isinstance(raw, unicode):
+            if isinstance(raw, str):
                 raw = raw.encode('utf-8')
             parser = url_parser
             url = parser.parse(raw.strip(), lexer=lexer.clone())
