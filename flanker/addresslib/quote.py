@@ -1,4 +1,4 @@
-from StringIO import StringIO
+from io import StringIO
 import re
 from flanker.addresslib.lexer import t_ATOM, t_FWSP
 
