@@ -87,7 +87,7 @@ def parse(address, addr_spec_only=False, metrics=False):
         parser = mailbox_or_url_parser
 
     # normalize inputs to bytestrings
-    if isinstance(address, unicode):
+    if isinstance(address, str):
         address = address.encode('utf-8')
 
     # sanity checks
