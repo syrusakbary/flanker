@@ -35,7 +35,7 @@ See the parser.py module for implementation details of the parser.
 """
 from logging import getLogger
 from time import time
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 import idna
 from ply.lex import LexError
