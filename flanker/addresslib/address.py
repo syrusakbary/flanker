@@ -508,7 +508,7 @@ class EmailAddress(Address):
         return True
 
     def __repr__(self):
-        return unicode(self).encode('utf-8')
+        return str(self).encode('utf-8')
 
     def __str__(self):
         return self.address.encode('utf-8')
@@ -519,7 +519,7 @@ class EmailAddress(Address):
         return u'{}@{}'.format(self.mailbox, self.hostname)
 
     def to_unicode(self):
-        return unicode(self)
+        return str(self, 'utf-8')
 
     def full_spec(self):
         """
@@ -684,7 +684,7 @@ class UrlAddress(Address):
         return self.address
 
     def to_unicode(self):
-        return unicode(self)
+        return str(self, 'utf-8')
 
     def full_spec(self):
         return self.address
@@ -758,7 +758,7 @@ class AddressList(object):
         return ', '.join(str(addr) for addr in self.container)
 
     def __unicode__(self):
-        return u', '.join(unicode(addr) for addr in self.container)
+        return u', '.join(str(addr, 'utf-8') for addr in self.container)
 
     def __add__(self, other):
         """
