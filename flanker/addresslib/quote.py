@@ -50,7 +50,7 @@ def smart_unquote(s):
 
 
 def _contains_atoms_only(s):
-    if isinstance(s, unicode):
+    if isinstance(s, str):
         s = s.encode('utf-8')
     match_result = _RE_ATOM_PHRASE.match(s)
     return match_result and match_result.end(0) == len(s)
