@@ -182,7 +182,7 @@ mailbox_or_url_list_parser = yacc.yacc(
 if __name__ == '__main__':
     while True:
         try:
-            s = raw_input('\nflanker> ')
+            s = input('\nflanker> ')
         except KeyboardInterrupt:
             break
         except EOFError:
