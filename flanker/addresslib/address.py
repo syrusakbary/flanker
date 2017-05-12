@@ -187,7 +187,7 @@ def parse_list(address_list, strict=False, as_tuple=False, metrics=False):
         log.warning('strict parsing has been removed, ignoring')
 
     mtimes = {'parsing': 0}
-
+    basestring = (str, bytes)
     if not address_list:
         parsed, unparsed = AddressList(), []
     elif isinstance(address_list, list) and len(address_list) > MAX_ADDRESS_NUMBER:
@@ -196,6 +196,7 @@ def parse_list(address_list, strict=False, as_tuple=False, metrics=False):
     elif isinstance(address_list, list):
         parsed, unparsed = AddressList(), []
         for address in address_list:
+            basestring = (str, bytes)
             if isinstance(address, basestring):
                 retval, metrics = parse(address, metrics=True)
                 mtimes['parsing'] += metrics['parsing']
@@ -581,6 +582,7 @@ class EmailAddress(Address):
         """
         Allows comparison of two addresses.
         """
+        basestring = (str, bytes)
         if isinstance(other, basestring):
             other = parse(other)
         if other:
@@ -689,6 +691,7 @@ class UrlAddress(Address):
 
     def __eq__(self, other):
         "Allows comparison of two URLs"
+        basestring = (str, bytes)
         if isinstance(other, basestring):
             other = parse(other)
         if other:
@@ -741,6 +744,7 @@ class AddressList(object):
         """
         When comparing ourselves to other lists we must ignore order.
         """
+        basestring = (str, bytes)
         if isinstance(other, list):
             other = parse_list(other)
         if isinstance(other, basestring):
