@@ -91,6 +91,7 @@ class TokenStream(object):
         be either a compiled regex or a string.
         """
         # match single character
+        basestring = (str, bytes)
         if isinstance(token, basestring) and len(token) == 1:
             if self.peek() == token:
                 self.position += 1
