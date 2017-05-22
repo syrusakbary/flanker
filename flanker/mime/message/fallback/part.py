@@ -163,8 +163,8 @@ def _try_decode(key, value):
         try:
             return headers.parse_header_value(key, value)
         except Exception:
-            return unicode(value, 'utf-8', 'ignore')
-    elif isinstance(value, unicode):
+            return str(value, 'utf-8', 'ignore')
+    elif isinstance(value, str):
         return value
     else:
         return ""
