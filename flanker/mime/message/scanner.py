@@ -25,7 +25,7 @@ def scan(string):
     except DecodingError:
         raise
     except Exception:
-        raise DecodingError("Malformed MIME message"), None, sys.exc_info()[2]
+        raise DecodingError("Malformed MIME message")
 
 
 def traverse(pointer, iterator, parent=None, allow_bad_mime=False):
