@@ -3,7 +3,7 @@ from flanker.mime.message.utils import to_unicode
 
 def convert_to_unicode(charset, value):
     #in case of unicode we have nothing to do
-    if isinstance(value, unicode):
+    if isinstance(value,str):
         return value
 
     charset = _translate_charset(charset)
