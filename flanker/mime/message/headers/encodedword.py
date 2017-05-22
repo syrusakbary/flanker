@@ -76,7 +76,7 @@ def mime_to_unicode(header):
     except Exception:
         try:
             logged_header = header
-            if isinstance(logged_header, unicode):
+            if isinstance(logged_header, str):
                 logged_header = logged_header.encode('utf-8')
                 # encode header as utf-8 so all characters can be base64 encoded
             logged_header = b64encode(logged_header)
