@@ -1,6 +1,6 @@
 # coding:utf-8
 import logging
-import regex as re
+import re
 
 import email.quoprimime
 import email.base64mime
@@ -43,6 +43,7 @@ def mime_to_unicode(header):
         u"Hello"
     """
     # Only string header values need to be converted.
+    basestring = (str, bytes)
     if not isinstance(header, basestring):
         return header
 
