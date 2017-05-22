@@ -1,5 +1,5 @@
 import string
-import regex
+import re as regex
 from collections import deque
 from flanker.mime.message.headers import encodedword, parametrized
 from flanker.mime.message.headers.wrappers import ContentType, WithParams
