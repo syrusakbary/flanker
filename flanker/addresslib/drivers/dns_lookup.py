@@ -1,6 +1,5 @@
 import collections
-import dnsq
-
+import dns.resolver
 
 class DNSLookup(collections.MutableMapping):
     """
@@ -11,8 +10,9 @@ class DNSLookup(collections.MutableMapping):
         pass
 
     def __getitem__(self, key):
+        resolver = dns.resolver.Resolver()
         try:
-            return dnsq.mx_hosts_for(key)
+            return resolver.query(key, "MX")
         except:
             return []
 
