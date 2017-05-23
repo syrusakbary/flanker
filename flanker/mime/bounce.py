@@ -1,7 +1,7 @@
-import regex as re
+import re
 from collections import deque
 from contextlib import closing
-from cStringIO import StringIO
+from io import BytesIO
 from flanker.mime.message.headers.parsing import parse_stream
 from flanker.mime.message.headers import MimeHeaders
 
@@ -28,7 +28,7 @@ def collect(message):
 
 def collect_from_status(body):
     out = deque()
-    with closing(StringIO(body)) as stream:
+    with closing(BytesIO(body)) as stream:
         for i in xrange(3):
             out += parse_stream(stream)
     return out
