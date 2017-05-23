@@ -18,7 +18,7 @@ def is_pure_ascii(value):
     >>> utils.is_pure_ascii("Alice")
         True
     '''
-
+    basestring = (str, bytes)
     if value is None:
         return False
     if not isinstance(value, basestring):
@@ -68,5 +68,5 @@ def metrics_wrapper():
 
 
 # allows, \t\n\v\f\r (0x09-0x0d)
-CONTROL_CHARS = ''.join(map(unichr, range(0, 9) + range(14, 32) + range(127, 160)))
+CONTROL_CHARS = ''.join(map(chr, range(0, 9) + range(14, 32) + range(127, 160)))
 CONTROL_CHAR_RE = re.compile('[%s]' % re.escape(CONTROL_CHARS))
