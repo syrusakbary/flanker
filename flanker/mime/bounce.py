@@ -29,7 +29,7 @@ def collect(message):
 def collect_from_status(body):
     out = deque()
     with closing(BytesIO(body)) as stream:
-        for i in xrange(3):
+        for i in range(3):
             out += parse_stream(stream)
     return out
 
