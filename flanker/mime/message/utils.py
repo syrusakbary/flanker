@@ -46,7 +46,7 @@ def _guess_and_convert(value):
 
 
 def _make_unicode(value, charset=None):
-    if isinstance(value, unicode):
+    if isinstance(value, str):
         return value
 
     charset = charset or "utf-8"
