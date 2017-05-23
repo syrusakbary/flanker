@@ -28,7 +28,7 @@ def multipart_message_test():
     eq_(C('multipart', 'alternative', dict(boundary='=-omjqkVTVbwdgCWFRgIkx')),
         message.content_type)
 
-    p = unicode(pmessage.get_payload()[0].get_payload(decode=True), 'utf-8')
+    p = str(pmessage.get_payload()[0].get_payload(decode=True), 'utf-8')
     eq_(p, message.parts[0].body)
 
     p = pmessage.get_payload()[1].get_payload(decode=True)
@@ -54,13 +54,13 @@ def enclosed_message_test():
         enclosed.headers['Content-Type'])
 
     pbody = penclosed.get_payload()[0].get_payload()[0].get_payload(decode=True)
-    pbody = unicode(pbody, 'utf-8')
+    pbody = str(pbody, 'utf-8')
     body = enclosed.enclosed.parts[0].body
     eq_(pbody, body)
 
     body = enclosed.enclosed.parts[1].body
     pbody = penclosed.get_payload()[0].get_payload()[1].get_payload(decode=True)
-    pbody = unicode(pbody, 'utf-8')
+    pbody = str(pbody, 'utf-8')
     eq_(pbody, body)
 
 
@@ -115,7 +115,7 @@ def test_uservoice_case():
     message._container._body_changed = True
     val = message.to_string()
     for line in val.splitlines():
-        print line
+        print (line)
         ok_(len(line) < 200)
     message = scan(val)
     eq_(html, message.body)
