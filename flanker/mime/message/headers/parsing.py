@@ -60,6 +60,7 @@ def split(fp):
     """Read lines with headers until the start of body"""
     lines = deque()
     for line in fp:
+        line = line.decode('utf-8')
         if len(line) > MAX_LINE_LENGTH:
             raise DecodingError(
                 "Line is too long: {0}".format(len(line)))

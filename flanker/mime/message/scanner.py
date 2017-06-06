@@ -13,11 +13,10 @@ log = getLogger(__name__)
 def scan(string):
     """Scanner that uses 1 pass to scan the entire message and
     build a message tree"""
+    # if not isinstance(string, str):
+    #     raise DecodingError("Scanner works with byte strings only")
 
-    if not isinstance(string, str):
-        raise DecodingError("Scanner works with byte strings only")
-
-    tokens = tokenize(string)
+    tokens = tokenize(string.decode('utf-8'))
     if not tokens:
         tokens = [default_content_type()]
     try:
@@ -135,11 +134,11 @@ def traverse(pointer, iterator, parent=None, allow_bad_mime=False):
 
         enclosed = traverse(pointer, iterator, token, allow_bad_mime)
         return make_part(content_type=token if enclosed else default_content_type(),
-                     start=pointer,
-                     end=iterator.current(),
-                     iterator=iterator,
-                     enclosed=enclosed,
-                     parent=parent)
+                         start=pointer,
+                         end=iterator.current(),
+                         iterator=iterator,
+                         enclosed=enclosed,
+                         parent=parent)
 
     # this part contains headers separated by newlines,
     # grab these headers and enclose them in one part
@@ -228,7 +227,7 @@ def make_part(content_type, start, end, iterator, parts=[], enclosed=None,
             string=iterator.string),
         parts=parts,
         enclosed=enclosed,
-        is_root=(parent==None))
+        is_root=(parent == None))
 
 
 def locate_first_newline(stream, start):
@@ -417,7 +416,7 @@ def _grab_newline(position, string, direction):
     while 0 < position < len(string):
         if string[position] == '\n':
             if direction < 0:
-                if position - 1 > 0 and string[position-1] == '\r':
+                if position - 1 > 0 and string[position - 1] == '\r':
                     return position - 1
             return position
         position += direction
@@ -444,7 +443,7 @@ def _filter_false_tokens(tokens):
             # Only the first content-type header in a headers section is valid.
             if current_content_type or current_section != _SECTION_HEADERS:
                 continue
-    
+
             current_content_type = token
             boundaries.append(token.get_boundary())
 
