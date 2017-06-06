@@ -1,7 +1,8 @@
 import ply.yacc as yacc
-from lexer import tokens, lexer
 from collections import namedtuple
 import logging
+
+from .lexer import tokens, lexer
 
 
 logging.basicConfig()
